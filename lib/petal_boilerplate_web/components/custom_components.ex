@@ -4,29 +4,42 @@ defmodule PetalBoilerplateWeb.CustomComponents do
 
   def navbar(assigns) do
     ~H"""
-      <nav class=" p-4 bg-red-600 text-gray-200 border-b-4 border-yellow-400 justify-center">
+    <nav>
+      <div class=" p-4 bg-red-600 text-gray-200 border-b-4 border-yellow-400 justify-center">
         <.container max_width="lg" class="flex justify-between">
           <img
             src="https://www17.wellsfargomedia.com/assets/images/rwd/wf_logo_220x23.png"
             alt="wells fargo logo"
           />
           <div class="flex gap-4">
-            <a href="#" class="hover:text-white">Financial</a>
-            <a href="#" class="hover:text-white">Capital</a>
-            <a href="#" class="hover:text-white">Banking</a>
+            <%= render_slot(@inner_block) %>
           </div>
         </.container>
-      </nav>
-      <nav class=" p-4 bg-gray-200 text-gray-600  justify-center">
+      </div>
+    <%= if @has_subheader == "true" do %>
+      <div class=" p-4 bg-gray-200 text-gray-600  justify-center">
         <.container max_width="lg" class="flex justify-between">
           <div class="flex gap-4">
-            <a href="#" class="hover:text-gray-900">Something</a>
-            <a href="#" class="hover:text-gray-900">Financial</a>
-            <a href="#" class="hover:text-gray-900">About Us</a>
+          <%=  render_slot(@subheader)%>
           </div>
         </.container>
+      </div>
+    <% end %>
       </nav>
     """
   end
+
+  def navbar__link(assigns) do
+    ~H"""
+    <%= if @type == "header" do %>
+    <a href="#" class="hover:text-white"><%= render_slot(@inner_block) %></a>
+    <% end %>
+    <%= if @type == "subheader" do %>
+    <a href="#" class="hover:text-gray-900"><%= render_slot(@inner_block) %></a>
+    <% end %>
+    """
+  end
+
+
 
 end
