@@ -267,6 +267,8 @@ defmodule PetalBoilerplateWeb.CoreComponents do
     """
   end
 
+
+
   @doc """
   Renders an input with label and error messages.
 
