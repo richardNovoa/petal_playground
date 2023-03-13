@@ -39,7 +39,4 @@ defmodule PetalBoilerplateWeb.CustomComponents do
     <% end %>
     """
   end
-
-
-
 end
